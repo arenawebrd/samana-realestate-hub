@@ -22,7 +22,7 @@ const isHome = Astro.url.pathname === '/';
       : 'border-b border-ink/5 bg-paper/90 backdrop-blur',
   ]}
 >
-  <div class="container-x flex h-16 items-center justify-between gap-4 md:h-20">
+  <div class="container-x flex h-14 items-center justify-between gap-4 md:h-16">
     {/* Logo */}
     <a href="/" aria-label={`${business.name} home`} class="shrink-0">
       <Logo light={isHome} />
