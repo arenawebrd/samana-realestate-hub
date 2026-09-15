@@ -9,19 +9,34 @@ const nav = [
   { label: 'Categories', href: '/categories/' },
   { label: 'About', href: '/about/' },
 ];
+
+const isHome = Astro.url.pathname === '/';
 ---
 
-<header class="sticky top-0 z-40 border-b border-ink/5 bg-paper/80 backdrop-blur">
+<header
+  id="site-header"
+  class:list={[
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+    isHome
+      ? 'border-b border-white/10 bg-transparent'
+      : 'border-b border-ink/5 bg-paper/90 backdrop-blur',
+  ]}
+>
   <div class="container-x flex h-16 items-center justify-between gap-4 md:h-20">
     <a href="/" aria-label={`${business.name} home`} class="shrink-0">
-      <Logo />
+      <Logo light={isHome} />
     </a>
 
     <nav aria-label="Primary" class="hidden items-center gap-1 md:flex">
       {nav.map((item) => (
         <a
           href={item.href}
-          class="rounded-full px-4 py-2 text-sm font-medium text-ink/75 transition-colors hover:bg-ink/5 hover:text-ink"
+          class:list={[
+            'rounded-full px-4 py-2 text-sm font-medium transition-colors',
+            isHome
+              ? 'text-white/80 hover:bg-white/10 hover:text-white'
+              : 'text-ink/75 hover:bg-ink/5 hover:text-ink',
+          ]}
         >
           {item.label}
         </a>
@@ -29,13 +44,26 @@ const nav = [
     </nav>
 
     <div class="flex items-center gap-2">
-      <a href="/about/" class="btn-accent hidden md:inline-flex">
+      <a
+        href="/about/"
+        class:list([
+          'hidden md:inline-flex',
+          isHome
+            ? 'btn bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 border border-white/20'
+            : 'btn-accent',
+        ])}
+      >
         List Your Business
       </a>
       {/* Mobile hamburger */}
       <button
         id="menu-toggle"
-        class="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition-colors hover:bg-ink/5 md:hidden"
+        class:list([
+          'grid h-10 w-10 place-items-center rounded-full transition-colors md:hidden',
+          isHome
+            ? 'text-white/80 hover:bg-white/10'
+            : 'text-ink/70 hover:bg-ink/5',
+        ])}
         aria-label="Toggle menu"
         aria-expanded="false"
       >
@@ -99,6 +127,25 @@ const nav = [
 </header>
 
 <script>
+  const header = document.getElementById('site-header');
+  if (header) {
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        header.classList.remove('bg-transparent', 'border-b-white/10');
+        header.classList.add('bg-paper/90', 'backdrop-blur', 'border-b-ink/5', 'shadow-sm');
+      } else {
+        // Only apply transparent if on homepage
+        const isHome = window.location.pathname === '/';
+        if (isHome) {
+          header.classList.remove('bg-paper/90', 'backdrop-blur', 'border-b-ink/5', 'shadow-sm');
+          header.classList.add('bg-transparent', 'border-b-white/10');
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const iconOpen = document.getElementById('menu-icon-open');
