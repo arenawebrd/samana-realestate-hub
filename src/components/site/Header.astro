@@ -18,7 +18,7 @@ const isHome = Astro.url.pathname === '/';
   class:list={[
     'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
     isHome
-      ? 'border-b border-white/10 bg-transparent'
+      ? 'bg-transparent'
       : 'border-b border-ink/5 bg-paper/90 backdrop-blur',
   ]}
 >
@@ -116,13 +116,13 @@ const isHome = Astro.url.pathname === '/';
   if (header) {
     const onScroll = () => {
       if (window.scrollY > 50) {
-        header.classList.remove('bg-transparent', 'border-b-white/10');
-        header.classList.add('bg-paper/90', 'backdrop-blur', 'border-b-ink/5', 'shadow-sm');
+        header.classList.remove('bg-transparent');
+        header.classList.add('bg-paper/90', 'backdrop-blur', 'border-b', 'border-ink/5', 'shadow-sm');
       } else {
         const isHome = window.location.pathname === '/';
         if (isHome) {
-          header.classList.remove('bg-paper/90', 'backdrop-blur', 'border-b-ink/5', 'shadow-sm');
-          header.classList.add('bg-transparent', 'border-b-white/10');
+          header.classList.remove('bg-paper/90', 'backdrop-blur', 'border-b', 'border-ink/5', 'shadow-sm');
+          header.classList.add('bg-transparent');
         }
       }
     };
