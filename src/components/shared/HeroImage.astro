@@ -56,10 +56,7 @@ const textColor = overlay === 'light' ? 'text-ink' : 'text-white';
   )}
   
   {/* Content */}
-  <div class:list={[
-    'container-x relative flex h-full items-center py-16 md:py-24',
-    height === 'lg' && 'justify-center',
-  ]}>
+  <div class="container-x absolute inset-0 flex items-center justify-center py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
       {eyebrow && (
         <div class={`mb-4 text-xs font-semibold uppercase tracking-[0.18em] ${overlay === 'light' ? 'text-ink/60' : 'text-white/70'}`}>
