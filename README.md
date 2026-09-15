@@ -1,93 +1,63 @@
-# SEO — live demo site
+# Samana Real Estate Hub
 
-Six pages in one Astro project, each showing a stage of the SEO workflow for a fictional Melbourne plumber (Plumbing Co) plus a California landing page. Every page is statically pre-rendered — view-source on any route shows finished HTML.
-
-## The six versions
-
-| Route | Stage | What's demonstrated |
-|---|---|---|
-| `/v1` | Scaffolded site | Claude Code builds the homepage from a prompt |
-| `/v2` | AI blog slop | Generic AI blog post with no voice files |
-| `/v3` | Voice-injected | Same post rewritten using `references/voice.md` + `humour.md` + `stats.md` + `stories.md` + `opinions.md` |
-| `/v4` | Landing page | City+service landing page (`plumber baldwin park ca`), homepage silhouette, local NAP schema |
-| `/v5` | On-page SEO | v3's post run through the 15-category, 80+ item on-page SEO checklist |
-| `/v6` | Technical SEO | v5 + sitemap, robots, OG images, Organization schema, favicon |
+Rank & rent real estate directory for Samana province, Dominican Republic. 70 money pages targeting `[category] in [location]` search queries.
 
 ## Stack
 
-- **Astro 5** with `output: 'static'` — full SSG, no runtime server
+- **Astro 5** — static site generation
 - **TypeScript**
 - **Tailwind CSS 4**
-- **Pexels API** for build-time images (optional — run `node scripts/fetch-pexels.mjs` to download)
+- **Leaflet + OpenStreetMap** — free maps (no Google API)
+- **Pexels API** — hero images downloaded at build time
+
+## Site structure
+
+| Route | Pages | Description |
+|---|---|---|
+| `/` | 1 | Homepage with hero, categories, locations, stats, testimonials |
+| `/about/` | 1 | About page with "List your business" CTA |
+| `/locations/` | 1 | Locations hub |
+| `/locations/[location]/` | 7 | Individual location pages with Leaflet map |
+| `/categories/` | 1 | Categories hub |
+| `/categories/[category]/` | 10 | Individual category pages |
+| `/locations/[location]/[category]/` | 70 | Money pages (location × category) |
+
+**Total: 91 pages**
 
 ## Local dev
 
 ```bash
 npm install
-npm run dev     # http://localhost:4321
-npm run build   # static export to dist/
+cp .env.example .env    # add your Pexels API key
+node scripts/fetch-pexels-hero.mjs   # download images (optional)
+npm run dev             # http://localhost:4321
+npm run build           # static export to dist/
 ```
 
-## Email configuration
+## Environment variables
 
-The contact form uses `mailto:` by default (works without a backend). For production, configure email sending in `.env`:
+| Variable | Required | Description |
+|---|---|---|
+| `PEXEL_API` | No | Pexels API key for hero images |
+
+## Images
+
+Hero images are fetched from Pexels at build time:
 
 ```bash
-# Provider: "smtp" | "gmail" | "resend"
-EMAIL_PROVIDER=smtp
-EMAIL_TO=hello@plumbingco.com.au
-EMAIL_FROM=noreply@plumbingco.com.au
-
-# SMTP custom
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_USER=
-SMTP_PASS=
-
-# Gmail (app password required)
-GMAIL_USER=
-GMAIL_PASS=
-
-# Resend
-RESEND_API_KEY=
+node scripts/fetch-pexels-hero.mjs
 ```
 
-The email utility is at `src/lib/email.ts`. Import `sendEmail()` from there when deploying with SSR.
+Downloads to `public/images/` (home, locations, categories). Attribution saved to `public/images/metadata.json`.
 
-## Pexels images
+## SEO
 
-Set `PEXEL_API` in `.env` and run:
+- JSON-LD schemas: WebSite, Organization, BreadcrumbList, FAQPage
+- Unique content per money page (70 custom intros + market descriptions)
+- Breadcrumbs on all internal pages
+- Auto-generated sitemap via `@astrojs/sitemap`
+- Canonical URLs on every page
 
-```bash
-node scripts/fetch-pexels.mjs
-```
+## Deploy
 
-This downloads a hero + one image per H2 heading for every blog post, saves them to `/public/images/blog/<post>/<section>.jpg`, and writes photographer attribution to `/content/pexels.json`.
-
-## References folder
-
-The voice layer lives in `src/references/`:
-
-- `voice.md` — Marco's writing style
-- `humour.md` — dad-joke frequency, anti-patterns, examples
-- `stats.md` — canonical real numbers (pricing, review counts, response times)
-- `stories.md` — recurring anecdotes
-- `opinions.md` — industry opinions backed by numbers
-- `used-keywords.md` — tracker so primary keywords aren't reused
-
-Every content-generation task reads these files first. See `CLAUDE.md` at the root for the full instructions.
-
-## Keyword research
-
-- `keywords.csv` — blog post keyword research (used for v2 / v3 / v5 / v6)
-- `Service-keywords.csv` — city+service keyword research (used for v4)
-
-## SEO reference files
-
-- `on-page-seo.md` — 80+ item on-page SEO checklist applied to v5
-- `slideshow/onpage-seo-checklist.html` — visual reference for the checklist
-- `slideshow/technical-seo.html` — visual reference for technical SEO
-
----
-
-Built with [Claude Code](https://claude.com/claude-code).
+Static output to `dist/`. Deploy to Vercel, Netlify, Cloudflare Pages, or any static host.
