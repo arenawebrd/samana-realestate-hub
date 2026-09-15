@@ -1,0 +1,60 @@
+---
+import Logo from './Logo.astro';
+import { business } from '../../data/business';
+import { locations } from '../../data/locations';
+import { categories } from '../../data/categories';
+---
+
+<footer class="mt-24 border-t border-ink/10 bg-ink text-paper">
+  <div class="container-x grid grid-cols-2 gap-10 py-16 md:grid-cols-4">
+    <div class="col-span-2">
+      <div class="text-paper">
+        <Logo light />
+      </div>
+      <p class="mt-5 max-w-md text-sm leading-relaxed text-paper/70">
+        {business.description}
+      </p>
+      <div class="mt-6 flex gap-3">
+        <a href="/about/" class="text-sm text-paper/50 underline-offset-4 hover:text-accent hover:underline">About</a>
+        <a href="mailto:{business.email}" class="text-sm text-paper/50 underline-offset-4 hover:text-accent hover:underline">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="text-xs font-semibold uppercase tracking-[0.18em] text-paper/60">
+        Locations
+      </div>
+      <ul class="mt-4 space-y-2 text-sm text-paper/80">
+        {locations.map((loc) => (
+          <li>
+            <a href={`/locations/${loc.slug}/`} class="hover:text-accent transition-colors">
+              {loc.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <div class="text-xs font-semibold uppercase tracking-[0.18em] text-paper/60">
+        Categories
+      </div>
+      <ul class="mt-4 space-y-2 text-sm text-paper/80">
+        {categories.map((cat) => (
+          <li>
+            <a href={`/categories/${cat.slug}/`} class="hover:text-accent transition-colors">
+              {cat.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-paper/10">
+    <div class="container-x flex flex-col items-start justify-between gap-3 py-6 text-xs text-paper/50 md:flex-row md:items-center">
+      <span>© {new Date().getFullYear()} {business.legalName}. All rights reserved.</span>
+      <span>Built with Astro · Statically rendered for speed.</span>
+    </div>
+  </div>
+</footer>

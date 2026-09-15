@@ -1,0 +1,39 @@
+---
+interface Props {
+  light?: boolean;
+}
+
+const { light = false } = Astro.props;
+---
+
+<span class="inline-flex items-center gap-2">
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    aria-hidden="true"
+    class="shrink-0"
+  >
+    <rect x="1" y="1" width="26" height="26" rx="7" fill={light ? '#1E3A5F' : '#1E3A5F'} />
+    <path
+      d="M7 20V10a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10"
+      stroke="#C9A84C"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M14 18v-5m0 0l-2 2m2-2l2 2"
+      stroke="#C9A84C"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  <span class:list={[
+    "font-display text-[1.1rem] font-bold tracking-tight",
+    light ? "text-paper" : "text-ink",
+  ]}>
+    Samana<span class="text-accent">.</span>RE
+  </span>
+</span>

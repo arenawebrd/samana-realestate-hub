@@ -1,0 +1,48 @@
+---
+import { business } from '../../data/business';
+---
+
+<section id="contact" class="container-x mt-24 md:mt-32">
+  <div class="relative overflow-hidden rounded-3xl border border-ink/10 bg-paper p-10 md:p-16">
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_300px_at_80%_10%,rgba(30,58,95,0.08),transparent_60%)]"
+    />
+    <div class="relative grid grid-cols-1 items-center gap-8 md:grid-cols-12">
+      <div class="md:col-span-7">
+        <h2 class="font-display text-3xl font-bold leading-[1.05] tracking-tightest md:text-5xl">
+          List your business <br />
+          in our directory.
+        </h2>
+        <p class="mt-4 max-w-xl text-ink/70">
+          Join the leading real estate directory in Samana province. Get discovered by 
+          potential buyers, sellers, and investors searching for real estate services.
+        </p>
+      </div>
+
+      <div class="flex flex-col items-start gap-3 md:col-span-5 md:items-end">
+        <a
+          href="/about/"
+          class="group inline-flex items-center gap-3 rounded-full bg-accent px-6 py-4 text-brand-ink transition-all hover:bg-accent/90"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 4v16m8-8H4"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="font-display text-xl font-bold">Get listed</span>
+        </a>
+        <a
+          href="/locations/"
+          class="text-sm font-medium text-ink/70 underline-offset-4 hover:text-ink hover:underline"
+        >
+          or explore locations first →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

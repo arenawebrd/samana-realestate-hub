@@ -1,0 +1,82 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  eyebrow?: string;
+  image: string;
+  alt?: string;
+  height?: 'sm' | 'md' | 'lg';
+  overlay?: 'dark' | 'light' | 'brand';
+}
+
+const {
+  title,
+  subtitle,
+  eyebrow,
+  image,
+  alt = '',
+  height = 'md',
+  overlay = 'dark',
+} = Astro.props;
+
+const heightClasses = {
+  sm: 'min-h-[300px] md:min-h-[400px]',
+  md: 'min-h-[400px] md:min-h-[500px]',
+  lg: 'min-h-[500px] md:min-h-[600px]',
+};
+
+const overlayClasses = {
+  dark: 'bg-gradient-to-b from-black/70 via-black/40 to-black/70',
+  light: 'bg-gradient-to-b from-white/70 via-white/50 to-white/70',
+  brand: 'bg-gradient-to-b from-brand/70 via-brand/50 to-brand/70',
+};
+
+const textColor = overlay === 'light' ? 'text-ink' : 'text-white';
+---
+
+<section class={`relative overflow-hidden ${heightClasses[height]}`}>
+  {/* Background image */}
+  <div
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={`background-image: url('${image}');`}
+    role="img"
+    aria-label={alt}
+  />
+  
+  {/* Overlay */}
+  <div class={`absolute inset-0 ${overlayClasses[overlay]}`} />
+  
+  {/* Breadcrumbs - inside hero */}
+  {Astro.slots.has('breadcrumbs') && (
+    <div class="container-x absolute left-0 right-0 top-0 z-10 pt-5">
+      <nav class="flex items-center gap-1.5 text-[13px] text-white/60">
+        <slot name="breadcrumbs" />
+      </nav>
+    </div>
+  )}
+  
+  {/* Content */}
+  <div class="container-x relative flex h-full items-center py-16 md:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      {eyebrow && (
+        <div class={`mb-4 text-xs font-semibold uppercase tracking-[0.18em] ${overlay === 'light' ? 'text-ink/60' : 'text-white/70'}`}>
+          {eyebrow}
+        </div>
+      )}
+      
+      <h1 class={`font-display text-4xl font-bold leading-[1.05] tracking-tightest md:text-6xl ${textColor}`}>
+        <slot name="title">{title}</slot>
+      </h1>
+      
+      {subtitle && (
+        <p class={`mx-auto mt-4 max-w-xl text-lg ${overlay === 'light' ? 'text-ink/70' : 'text-white/80'}`}>
+          {subtitle}
+        </p>
+      )}
+      
+      <div class="mt-6">
+        <slot name="actions" />
+      </div>
+    </div>
+  </div>
+</section>

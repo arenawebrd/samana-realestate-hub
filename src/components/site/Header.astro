@@ -1,0 +1,114 @@
+---
+import Logo from './Logo.astro';
+import { business } from '../../data/business';
+import { locations } from '../../data/locations';
+import { categories } from '../../data/categories';
+
+const nav = [
+  { label: 'Locations', href: '/locations/' },
+  { label: 'Categories', href: '/categories/' },
+  { label: 'About', href: '/about/' },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-ink/5 bg-paper/80 backdrop-blur">
+  <div class="container-x flex h-16 items-center justify-between gap-4 md:h-20">
+    <a href="/" aria-label={`${business.name} home`} class="shrink-0">
+      <Logo />
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-1 md:flex">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class="rounded-full px-4 py-2 text-sm font-medium text-ink/75 transition-colors hover:bg-ink/5 hover:text-ink"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href="/about/" class="btn-accent hidden md:inline-flex">
+        List Your Business
+      </a>
+      {/* Mobile hamburger */}
+      <button
+        id="menu-toggle"
+        class="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition-colors hover:bg-ink/5 md:hidden"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M3 6h14M3 10h14M3 14h14" />
+        </svg>
+        <svg id="menu-icon-close" class="hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M5 5l10 10M15 5L5 15" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile menu panel */}
+  <div id="mobile-menu" class="hidden border-t border-ink/5 bg-paper/95 backdrop-blur md:hidden">
+    <div class="container-x space-y-1 py-4">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class="block rounded-xl px-4 py-3 text-sm font-medium text-ink/75 transition-colors hover:bg-ink/5 hover:text-ink"
+        >
+          {item.label}
+        </a>
+      ))}
+      <div class="my-3 border-t border-ink/5" />
+      <div class="px-4 pb-2">
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-ink/40">Locations</div>
+      </div>
+      {locations.slice(0, 5).map((loc) => (
+        <a
+          href={`/locations/${loc.slug}/`}
+          class="block rounded-xl px-4 py-2.5 pl-8 text-sm text-ink/60 transition-colors hover:bg-ink/5 hover:text-ink"
+        >
+          {loc.name}
+        </a>
+      ))}
+      <a href="/locations/" class="block rounded-xl px-4 py-2.5 pl-8 text-sm font-medium text-brand hover:text-brand-ink">
+        View all locations →
+      </a>
+      <div class="my-3 border-t border-ink/5" />
+      <div class="px-4 pb-2">
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-ink/40">Categories</div>
+      </div>
+      {categories.slice(0, 5).map((cat) => (
+        <a
+          href={`/categories/${cat.slug}/`}
+          class="block rounded-xl px-4 py-2.5 pl-8 text-sm text-ink/60 transition-colors hover:bg-ink/5 hover:text-ink"
+        >
+          {cat.name}
+        </a>
+      ))}
+      <a href="/categories/" class="block rounded-xl px-4 py-2.5 pl-8 text-sm font-medium text-brand hover:text-brand-ink">
+        View all categories →
+      </a>
+      <div class="my-3 border-t border-ink/5" />
+      <a href="/about/" class="btn-accent mx-4 w-full">
+        List Your Business
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+</script>

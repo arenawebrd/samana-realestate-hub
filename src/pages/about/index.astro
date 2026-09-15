@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroImage from '../../components/shared/HeroImage.astro';
+import { locations } from '../../data/locations';
+import { categories } from '../../data/categories';
+---
+
+<BaseLayout
+  title="About — Samana Real Estate Hub"
+  description="Learn about Samana Real Estate Hub, the leading real estate directory in Samana province, Dominican Republic. Connecting buyers, sellers, and investors with trusted professionals."
+  canonical="/about/"
+>
+  <HeroImage
+    image="/images/home/hero.jpg"
+    alt="Samana province, Dominican Republic"
+    height="md"
+    overlay="dark"
+    eyebrow="About Us"
+  >
+    <Fragment slot="breadcrumbs">
+      <a href="/" class="hover:text-white/90 transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-white/90">About</span>
+    </Fragment>
+    <Fragment slot="title">
+      Your gateway to real estate <br />in Samana
+    </Fragment>
+    <Fragment slot="subtitle">
+      Connecting buyers, sellers, and investors with trusted real estate professionals across {locations.length} locations in the Dominican Republic.
+    </Fragment>
+  </HeroImage>
+
+  <section class="container-x py-16 md:py-24">
+    {/* Mission */}
+    <div class="mx-auto max-w-3xl">
+      <h2 class="font-display text-2xl font-bold tracking-tightest md:text-3xl">
+        Our mission
+      </h2>
+      <div class="mt-4 prose-content">
+        <p>
+          <strong>Samana Real Estate Hub</strong> is the leading real estate directory in Samana province, 
+          Dominican Republic. We connect buyers, sellers, renters, and investors with the best real estate 
+          professionals in the region.
+        </p>
+        <p>
+          Our directory features {categories.length} categories of real estate services across {locations.length} 
+          locations, from the bustling center of Santa Barbara de Samana to the pristine beaches of Las Galeras. 
+          Whether you're looking for a real estate agency, property manager, or home builder, you'll find 
+          trusted professionals ready to help.
+        </p>
+      </div>
+    </div>
+
+    {/* Stats */}
+    <div class="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-2 md:grid-cols-4">
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-brand">{locations.length}</div>
+        <div class="mt-2 text-sm text-ink/60">Locations</div>
+      </div>
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-brand">{categories.length}</div>
+        <div class="mt-2 text-sm text-ink/60">Categories</div>
+      </div>
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-brand">{locations.length * categories.length}</div>
+        <div class="mt-2 text-sm text-ink/60">Directory pages</div>
+      </div>
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-accent">Free</div>
+        <div class="mt-2 text-sm text-ink/60">Business listing</div>
+      </div>
+    </div>
+
+    {/* Why list with us */}
+    <div class="mx-auto mt-14 max-w-3xl">
+      <h2 class="font-display text-2xl font-bold tracking-tightest md:text-3xl">
+        Why list your business with us?
+      </h2>
+      <div class="mt-4 prose-content">
+        <p>
+          Listing your real estate business on Samana Real Estate Hub gives you visibility among 
+          potential clients searching for property services in the Dominican Republic. Our directory 
+          is designed to rank well in search engines, connecting you with motivated buyers, sellers, 
+          and investors.
+        </p>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div class="flex items-start gap-3 rounded-2xl border border-ink/10 bg-white p-5 shadow-card">
+          <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-ink">Search engine visibility</h3>
+            <p class="mt-1 text-sm text-ink/60">Our pages rank for local real estate searches</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 rounded-2xl border border-ink/10 bg-white p-5 shadow-card">
+          <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-ink">Location-specific pages</h3>
+            <p class="mt-1 text-sm text-ink/60">Dedicated pages for each location and service</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 rounded-2xl border border-ink/10 bg-white p-5 shadow-card">
+          <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-ink">Targeted audience</h3>
+            <p class="mt-1 text-sm text-ink/60">Reach clients specifically looking in Samana</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 rounded-2xl border border-ink/10 bg-white p-5 shadow-card">
+          <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-ink">Free listing</h3>
+            <p class="mt-1 text-sm text-ink/60">No cost to list your business</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* CTA */}
+    <div class="mx-auto mt-14 max-w-3xl">
+      <div class="relative overflow-hidden rounded-3xl border border-ink/10 bg-paper p-10 md:p-16">
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_300px_at_80%_10%,rgba(30,58,95,0.08),transparent_60%)]"
+        />
+        <div class="relative text-center">
+          <h2 class="font-display text-3xl font-bold leading-[1.05] tracking-tightest md:text-5xl">
+            Ready to get listed?
+          </h2>
+          <p class="mx-auto mt-4 max-w-xl text-ink/70">
+            Join our directory and get discovered by potential clients searching for 
+            real estate services in Samana province.
+          </p>
+          <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <a
+              href="mailto:hello@samanarealestatehub.com"
+              class="group inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-brand-ink transition-all hover:bg-accent/90"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              <span class="font-display text-lg font-bold">Contact us</span>
+            </a>
+            <a
+              href="/locations/"
+              class="text-sm font-medium text-ink/70 underline-offset-4 hover:text-ink hover:underline"
+            >
+              or explore our directory first →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

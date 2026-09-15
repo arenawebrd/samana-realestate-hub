@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import FeatureGrid from '../components/home/FeatureGrid.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import ServiceAreas from '../components/home/ServiceAreas.astro';
+import FinalCta from '../components/home/FinalCta.astro';
+import { locations } from '../data/locations';
+import { categories } from '../data/categories';
+---
+
+<BaseLayout
+  title="Samana Real Estate Hub — Real estate services in Samana, Dominican Republic"
+  description="Find real estate agencies, agents, developers, property management, and all property services across Samana province. Directory of 7 locations and 10 service categories."
+  canonical="/"
+>
+  <Hero />
+  <FeatureGrid />
+  <HowItWorks />
+  <ServiceAreas />
+
+  {/* Stats section */}
+  <section class="container-x mt-24 md:mt-32">
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-brand">{locations.length}</div>
+        <div class="mt-2 text-sm text-ink/60">Locations</div>
+      </div>
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-brand">{categories.length}</div>
+        <div class="mt-2 text-sm text-ink/60">Categories</div>
+      </div>
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-brand">{locations.length * categories.length}</div>
+        <div class="mt-2 text-sm text-ink/60">Directory pages</div>
+      </div>
+      <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-card">
+        <div class="font-display text-4xl font-bold text-accent">Free</div>
+        <div class="mt-2 text-sm text-ink/60">Business listing</div>
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+  <FinalCta />
+</BaseLayout>

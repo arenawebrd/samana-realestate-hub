@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categories } from '../../data/categories';
+import { locations } from '../../data/locations';
+import HeroImage from '../../components/shared/HeroImage.astro';
+import BreadcrumbListJsonLd from '../../components/seo/BreadcrumbListJsonLd.astro';
+---
+
+<BaseLayout
+  title="Real estate categories — Samana Real Estate Hub"
+  description="Browse 10 categories of real estate services in Samana province, Dominican Republic. From agencies and agents to developers and property managers."
+  canonical="/categories/"
+>
+  <BreadcrumbListJsonLd items={[
+    { name: 'Home', url: '/' },
+    { name: 'Categories' },
+  ]} />
+
+  <HeroImage
+    image="/images/home/hero.jpg"
+    alt="Real estate services in Samana"
+    height="md"
+    overlay="dark"
+    eyebrow="Categories"
+  >
+    <Fragment slot="breadcrumbs">
+      <a href="/" class="hover:text-white/90 transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-white/90">Categories</span>
+    </Fragment>
+    <Fragment slot="title">
+      Real estate services <span class="squiggle text-white">by category</span>
+    </Fragment>
+    
+    <Fragment slot="subtitle">
+      Explore {categories.length} categories of real estate services available across {locations.length} locations 
+      in Samana province. Find the right professionals for your property needs.
+    </Fragment>
+  </HeroImage>
+
+  <section class="container-x py-16 md:py-24">
+    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      {categories.map((cat) => (
+        <a
+          href={`/categories/${cat.slug}/`}
+          class="group flex flex-col justify-between rounded-2xl border border-ink/10 bg-white p-6 shadow-card transition-all hover:border-accent/30 hover:shadow-xl"
+        >
+          <div>
+            <div class="font-display text-lg font-bold tracking-tight text-ink">
+              {cat.name}
+            </div>
+            <div class="mt-1 text-xs font-medium uppercase tracking-wider text-ink/50">
+              {cat.classificationEn}
+            </div>
+            <div class="mt-3 text-sm text-ink/70">
+              {cat.tagline}
+            </div>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs text-ink/50">{locations.length} locations</span>
+            <div class="grid h-8 w-8 place-items-center rounded-full bg-brand-soft text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden>
+                <path d="M3 7h8m-3-4 4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {/* CTA */}
+    <section id="contact" class="mt-16">
+      <div class="relative overflow-hidden rounded-3xl border border-ink/10 bg-paper p-10 md:p-16">
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_300px_at_80%_10%,rgba(30,58,95,0.08),transparent_60%)]"
+        />
+        <div class="relative grid grid-cols-1 items-center gap-8 md:grid-cols-12">
+          <div class="md:col-span-7">
+            <h2 class="font-display text-3xl font-bold leading-[1.05] tracking-tightest md:text-5xl">
+              List your business<br />
+              in any category.
+            </h2>
+            <p class="mt-4 max-w-xl text-ink/70">
+              Join our directory and get discovered by potential clients searching for 
+              real estate services in Samana province.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-start gap-3 md:col-span-5 md:items-end">
+            <a
+              href="/about/"
+              class="group inline-flex items-center gap-3 rounded-full bg-accent px-6 py-4 text-brand-ink transition-all hover:bg-accent/90"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 4v16m8-8H4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span class="font-display text-xl font-bold">Get listed</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</BaseLayout>

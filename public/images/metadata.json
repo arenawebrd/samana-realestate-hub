@@ -1,0 +1,146 @@
+{
+  "home/hero": {
+    "id": 10490906,
+    "url": "https://www.pexels.com/photo/green-palm-trees-on-white-sand-beach-10490906/",
+    "photographer": "Mr Pixel",
+    "photographerUrl": "https://www.pexels.com/@mr-pixel-39045402",
+    "width": 6000,
+    "height": 4000
+  },
+  "locations/santa-barbara-de-samana": {
+    "id": 39465484,
+    "url": "https://www.pexels.com/photo/stunning-bridge-to-island-in-samana-dominican-republic-39465484/",
+    "photographer": "Joaquin Reyes Ramos",
+    "photographerUrl": "https://www.pexels.com/@joaquinrr",
+    "width": 8192,
+    "height": 6144
+  },
+  "locations/las-terrenas": {
+    "id": 1030380,
+    "url": "https://www.pexels.com/photo/goalie-net-on-seashore-1030380/",
+    "photographer": "Jose Espinal",
+    "photographerUrl": "https://www.pexels.com/@jose-espinal-373059",
+    "width": 6000,
+    "height": 4000
+  },
+  "locations/sanchez": {
+    "id": 39465484,
+    "url": "https://www.pexels.com/photo/stunning-bridge-to-island-in-samana-dominican-republic-39465484/",
+    "photographer": "Joaquin Reyes Ramos",
+    "photographerUrl": "https://www.pexels.com/@joaquinrr",
+    "width": 8192,
+    "height": 6144
+  },
+  "locations/el-valle": {
+    "id": 36916578,
+    "url": "https://www.pexels.com/photo/tropical-beach-at-sunset-with-palm-trees-36916578/",
+    "photographer": "Girish Nayyar",
+    "photographerUrl": "https://www.pexels.com/@girish-nayyar-2157016806",
+    "width": 6912,
+    "height": 5184
+  },
+  "locations/las-galeras": {
+    "id": 30243800,
+    "url": "https://www.pexels.com/photo/man-celebrating-on-dominican-beach-30243800/",
+    "photographer": "José Manuel Ramírez Brenis",
+    "photographerUrl": "https://www.pexels.com/@jose-manuel-ramirez-brenis-2148556734",
+    "width": 6016,
+    "height": 4016
+  },
+  "locations/el-limon": {
+    "id": 39465483,
+    "url": "https://www.pexels.com/photo/scenic-pier-leading-to-tropical-island-in-samana-39465483/",
+    "photographer": "Joaquin Reyes Ramos",
+    "photographerUrl": "https://www.pexels.com/@joaquinrr",
+    "width": 8192,
+    "height": 6144
+  },
+  "locations/arroyo-barril": {
+    "id": 36916578,
+    "url": "https://www.pexels.com/photo/tropical-beach-at-sunset-with-palm-trees-36916578/",
+    "photographer": "Girish Nayyar",
+    "photographerUrl": "https://www.pexels.com/@girish-nayyar-2157016806",
+    "width": 6912,
+    "height": 5184
+  },
+  "categories/real-estate-agency": {
+    "id": 7534173,
+    "url": "https://www.pexels.com/photo/spacious-workspace-with-tables-and-chairs-7534173/",
+    "photographer": "Max Vakhtbovych",
+    "photographerUrl": "https://www.pexels.com/@artbovich",
+    "width": 7360,
+    "height": 4912
+  },
+  "categories/real-estate-agent": {
+    "id": 8815820,
+    "url": "https://www.pexels.com/photo/man-in-a-suit-standing-at-the-bottom-of-a-staircase-8815820/",
+    "photographer": "Kampus Production",
+    "photographerUrl": "https://www.pexels.com/@kampus",
+    "width": 6016,
+    "height": 4016
+  },
+  "categories/real-estate-developer": {
+    "id": 38524594,
+    "url": "https://www.pexels.com/photo/modern-urban-construction-site-with-machinery-38524594/",
+    "photographer": "Paparazzi Ratzfatzzi",
+    "photographerUrl": "https://www.pexels.com/@paparazziratzfatzzi",
+    "width": 6000,
+    "height": 4000
+  },
+  "categories/vacation-home-rental": {
+    "id": 19823325,
+    "url": "https://www.pexels.com/photo/house-by-tropical-beach-19823325/",
+    "photographer": "Yogi R",
+    "photographerUrl": "https://www.pexels.com/@yogi-r-894778199",
+    "width": 6000,
+    "height": 4000
+  },
+  "categories/property-management": {
+    "id": 14998334,
+    "url": "https://www.pexels.com/photo/facade-of-white-apartment-building-under-white-sky-14998334/",
+    "photographer": "Nino  Sanger",
+    "photographerUrl": "https://www.pexels.com/@nino-sanger-203570376",
+    "width": 6000,
+    "height": 4000
+  },
+  "categories/real-estate-consultant": {
+    "id": 8112163,
+    "url": "https://www.pexels.com/photo/smiling-employee-holding-keys-over-table-near-sitting-clients-8112163/",
+    "photographer": "Pavel Danilyuk",
+    "photographerUrl": "https://www.pexels.com/@pavel-danilyuk",
+    "width": 6016,
+    "height": 4016
+  },
+  "categories/apartment-complex": {
+    "id": 29736225,
+    "url": "https://www.pexels.com/photo/modern-residential-complex-with-greenery-29736225/",
+    "photographer": "Tuan Vy",
+    "photographerUrl": "https://www.pexels.com/@tuan-vy-903011268",
+    "width": 6000,
+    "height": 4000
+  },
+  "categories/home-builder": {
+    "id": 8961555,
+    "url": "https://www.pexels.com/photo/man-in-black-shirt-holding-gray-and-orange-wheelbarrow-8961555/",
+    "photographer": "Mikael Blomkvist",
+    "photographerUrl": "https://www.pexels.com/@mikael-blomkvist",
+    "width": 7888,
+    "height": 5259
+  },
+  "categories/real-estate-attorney": {
+    "id": 7647387,
+    "url": "https://www.pexels.com/photo/a-couple-buying-a-new-home-7647387/",
+    "photographer": "Anastasia  Shuraeva",
+    "photographerUrl": "https://www.pexels.com/@anastasia-shuraeva",
+    "width": 6000,
+    "height": 4000
+  },
+  "categories/real-estate-appraiser": {
+    "id": 7937220,
+    "url": "https://www.pexels.com/photo/woman-in-jacket-and-with-notepad-standing-by-for-sale-banner-7937220/",
+    "photographer": "Pavel Danilyuk",
+    "photographerUrl": "https://www.pexels.com/@pavel-danilyuk",
+    "width": 6016,
+    "height": 4016
+  }
+}

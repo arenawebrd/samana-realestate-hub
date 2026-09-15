@@ -1,0 +1,82 @@
+---
+import { categories } from '../../data/categories';
+
+const categoryIcons: Record<string, string> = {
+  'real-estate-agency': '<path d="M3 21V7l9-5 9 5v14" /><path d="M9 21V12h6v9" /><path d="M1 21h22" />',
+  'real-estate-agent': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />',
+  'real-estate-developer': '<rect x="2" y="6" width="20" height="15" rx="2" /><path d="M12 2v4" /><path d="M2 10h20" /><path d="M8 2v4" /><path d="M16 2v4" />',
+  'vacation-home-rental': '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="M9 22V12h6v10" />',
+  'property-management': '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" /><circle cx="12" cy="10" r="3" />',
+  'real-estate-consultant': '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />',
+  'apartment-complex': '<rect x="4" y="2" width="16" height="20" rx="1" /><path d="M9 22V12h6v10" /><path d="M8 6h.01" /><path d="M16 6h.01" /><path d="M8 10h.01" /><path d="M16 10h.01" />',
+  'home-builder': '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />',
+  'real-estate-attorney': '<circle cx="12" cy="12" r="10" /><path d="M8 12h8" /><path d="M12 8v8" />',
+  'real-estate-appraiser': '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" />',
+};
+
+const featuredCategory = categories[0];
+const otherCategories = categories.slice(1);
+---
+
+<section id="categories" class="container-x mt-16 md:mt-24">
+  <div class="text-center">
+    <h2 class="font-display text-3xl font-bold tracking-tightest md:text-4xl">
+      Real estate services by category
+    </h2>
+    <p class="mx-auto mt-3 max-w-xl text-ink/60">
+      Browse {categories.length} categories of real estate professionals across Samana province.
+    </p>
+  </div>
+
+  {/* Featured category - large */}
+  <div class="mt-10">
+    <a
+      href={`/categories/${featuredCategory.slug}/`}
+      class="group relative flex flex-col overflow-hidden rounded-3xl bg-ink text-paper md:flex-row"
+    >
+      <div class="grid flex-1 place-items-center p-10 md:p-12">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={categoryIcons[featuredCategory.slug] ?? ''} />
+      </div>
+      <div class="flex flex-col justify-center border-t border-white/10 bg-black/20 p-8 md:w-[420px] md:border-l md:border-t-0">
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{featuredCategory.classificationEn}</div>
+        <h3 class="mt-2 font-display text-2xl font-bold leading-tight md:text-3xl">{featuredCategory.name}</h3>
+        <p class="mt-2 text-sm text-white/70">{featuredCategory.tagline}</p>
+        <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">
+          Explore
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m-3-4 4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  {/* Other categories - grid */}
+  <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {otherCategories.map((cat) => (
+      <a
+        href={`/categories/${cat.slug}/`}
+        class="group flex items-start gap-4 rounded-2xl border border-ink/10 bg-white p-6 shadow-card transition-all hover:border-brand/20 hover:shadow-xl"
+      >
+        <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={categoryIcons[cat.slug] ?? ''} />
+        </div>
+        <div class="flex-1">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-ink/40">{cat.classificationEn}</div>
+          <h3 class="mt-0.5 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{cat.name}</h3>
+          <p class="mt-1 text-sm leading-relaxed text-ink/55">{cat.tagline}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="mt-10 text-center">
+    <a
+      href="/categories/"
+      class="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white px-6 py-3 text-sm font-semibold text-ink shadow-card transition-all hover:border-brand/30 hover:shadow-xl"
+    >
+      View all {categories.length} categories
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M3 7h8m-3-4 4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { locations, getLocationBySlug } from '../../../data/locations';
+import { categories } from '../../../data/categories';
+import { business } from '../../../data/business';
+import HeroImage from '../../../components/shared/HeroImage.astro';
+import BreadcrumbListJsonLd from '../../../components/seo/BreadcrumbListJsonLd.astro';
+
+export async function getStaticPaths() {
+  return locations.map((loc) => ({
+    params: { location: loc.slug },
+    props: { loc },
+  }));
+}
+
+const { loc } = Astro.props;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Locations', url: '/locations/' },
+  { name: loc.name },
+];
+---
+
+<BaseLayout
+  title={`${loc.name} real estate — Samana Real Estate Hub`}
+  description={`Real estate services in ${loc.name}, Samana province. Find agencies, agents, developers, property management, and all property services in ${loc.name}.`}
+  canonical={`/locations/${loc.slug}/`}
+  keywords={[loc.name, 'real estate', 'Samana', 'Dominican Republic', 'property', 'buying', 'selling']}
+>
+  <BreadcrumbListJsonLd items={breadcrumbs} />
+
+  <HeroImage
+    image={`/images/locations/${loc.slug}.jpg`}
+    alt={`Real estate in ${loc.name}, Samana`}
+    height="md"
+    overlay="dark"
+    eyebrow={loc.typeEn}
+  >
+    <Fragment slot="breadcrumbs">
+      <a href="/" class="hover:text-white/90 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/locations/" class="hover:text-white/90 transition-colors">Locations</a>
+      <span>/</span>
+      <span class="text-white/90">{loc.name}</span>
+    </Fragment>
+    <Fragment slot="title">{loc.tagline}</Fragment>
+    <Fragment slot="subtitle">{loc.description}</Fragment>
+  </HeroImage>
+
+  <section class="container-x py-16 md:py-24">
+    {/* About + Map split */}
+    <div class="mx-auto mt-10 grid gap-8 lg:grid-cols-2 lg:items-center">
+      {/* About this location */}
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tightest md:text-3xl">
+          About {loc.name}
+        </h2>
+        <div class="mt-4 prose-content">
+          <p>
+            {loc.name} is a {loc.typeEn.toLowerCase()} in the {loc.municipality} municipality of Samana province. 
+            Located at coordinates {loc.lat.toFixed(4)}°N, {loc.lng.toFixed(4)}°W, it offers unique real estate 
+            opportunities in one of the Caribbean's most beautiful regions.
+          </p>
+          <p>
+            Whether you're looking to buy, sell, rent, or invest in {loc.name}, our directory connects you with 
+            the best real estate professionals in the area. From agencies and agents to developers and property 
+            managers, find everything you need for your real estate journey.
+          </p>
+        </div>
+      </div>
+
+      {/* Map */}
+      <div class="overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-card">
+        <div id="map" class="h-[300px] w-full lg:h-[350px]" data-lat={loc.lat} data-lng={loc.lng} data-zoom={loc.zoom} data-name={loc.name}></div>
+      </div>
+    </div>
+
+    {/* Categories in this location */}
+    <div class="mx-auto mt-14">
+      <h2 class="font-display text-2xl font-bold tracking-tightest md:text-3xl">
+        Real estate services in {loc.name}
+      </h2>
+      <p class="mt-2 text-ink/60">
+        Browse {categories.length} categories of real estate services available in {loc.name}.
+      </p>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {categories.map((cat) => (
+          <a
+            href={`/locations/${loc.slug}/${cat.slug}/`}
+            class="flex items-center gap-3 rounded-2xl border border-ink/10 bg-white p-5 shadow-card transition-all hover:border-accent/30 hover:shadow-xl"
+          >
+            <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <span class="font-medium text-ink">{cat.name}</span>
+              <span class="block text-xs text-ink/50">{cat.classificationEn}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    {/* CTA */}
+    <div class="mt-14">
+      <div class="relative overflow-hidden rounded-3xl border border-ink/10 bg-paper p-10 md:p-16">
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_300px_at_80%_10%,rgba(30,58,95,0.08),transparent_60%)]"
+        />
+        <div class="relative grid grid-cols-1 items-center gap-8 md:grid-cols-12">
+          <div class="md:col-span-7">
+            <div class="text-xs font-semibold uppercase tracking-[0.18em] text-ink/60">
+              List your business in {loc.name}
+            </div>
+            <h2 class="mt-3 font-display text-3xl font-bold leading-[1.05] tracking-tightest md:text-5xl">
+              Get discovered by potential clients
+            </h2>
+            <p class="mt-4 max-w-xl text-ink/70">
+              Join our directory and connect with buyers, sellers, and investors searching for 
+              real estate services in {loc.name} and across Samana province.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-start gap-3 md:col-span-5 md:items-end">
+            <a
+              href="/about/"
+              class="group inline-flex items-center gap-3 rounded-full bg-accent px-6 py-4 text-brand-ink transition-all hover:bg-accent/90"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 4v16m8-8H4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span class="font-display text-xl font-bold">List your business</span>
+            </a>
+            <a
+              href="/locations/"
+              class="text-sm font-medium text-ink/70 underline-offset-4 hover:text-ink hover:underline"
+            >
+              or explore other locations →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Other locations */}
+    <section class="mt-14">
+      <h2 class="font-display text-2xl font-bold tracking-tightest md:text-3xl">
+        Other locations in Samana
+      </h2>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {locations.filter((l) => l.slug !== loc.slug).map((l) => (
+          <a
+            href={`/locations/${l.slug}/`}
+            class="rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-medium text-ink/80 shadow-card transition-all hover:border-accent/30 hover:text-brand"
+          >
+            {l.name}
+          </a>
+        ))}
+      </div>
+    </section>
+  </section>
+
+  {/* Leaflet CSS + JS */}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  {/* Leaflet init */}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mapEl = document.getElementById('map');
+      if (!mapEl) return;
+
+      const lat = parseFloat(mapEl.dataset.lat || '19.2053');
+      const lng = parseFloat(mapEl.dataset.lng || '-69.3126');
+      const zoom = parseInt(mapEl.dataset.zoom || '13');
+
+      // @ts-ignore
+      const L = window.L;
+      if (!L) return;
+
+      const map = L.map('map').setView([lat, lng], zoom);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+      }).addTo(map);
+
+      const icon = L.divIcon({
+        className: 'custom-marker',
+        html: '<div style="width:24px;height:24px;background:#1E3A5F;border:3px solid #C9A84C;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
+        popupAnchor: [0, -16],
+      });
+
+      L.marker([lat, lng], { icon }).addTo(map)
+        .bindPopup('<strong>' + mapEl.dataset.name + '</strong><br>Samana, Dominican Republic')
+        .openPopup();
+    });
+  </script>
+</BaseLayout>
